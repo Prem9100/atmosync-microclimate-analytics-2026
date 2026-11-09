@@ -1,0 +1,26 @@
+services:
+  kafka:
+    image: apache/kafka:4.1.2
+    container_name: atmosync-kafka
+    ports:
+      - "9092:9092"
+    volumes:
+      - kafka_data:/var/lib/kafka/data
+
+  superset:
+    build:
+      context: .
+      dockerfile: Dockerfile.superset
+    container_name: atmosync-superset
+    ports:
+      - "8088:8088"
+    environment:
+      SUPERSET_SECRET_KEY: ${SUPERSET_SECRET_KEY}
+    volumes:
+      - superset_home:/app/superset_home
+      - ./superset_private_key.pem:/app/superset_private_key.pem:ro
+    command: ["/bin/sh", "-c", "superset run -h 0.0.0.0 -p 8088 --with-threads"]
+
+volumes:
+  kafka_data:
+  superset_home:

@@ -1,0 +1,31 @@
+kafka_private_key.pem
+kafka_public_key.pem
+
+# Environment secrets
+.env
+.env.*
+!.env.example
+
+# Private keys
+*.pem
+
+# dbt generated files
+target/
+dbt_packages/
+logs/
+
+# Python generated files
+*.egg-info/
+__pycache__/
+*.py[cod]
+
+# IDE / test files
+.vscode/
+.idea/
+.pytest_cache/
+
+# Raw data
+data/raw/*.csv
+
+# Project egg-info
+src/atmosync_week1.egg-info/

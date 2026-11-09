@@ -1,0 +1,27 @@
+-- AtmoSync - Member 3
+-- Snowflake permissions for Kafka ingestion
+
+USE ROLE SECURITYADMIN;
+
+-- Create dedicated Kafka role
+CREATE ROLE IF NOT EXISTS ATMOSYNC_KAFKA_ROLE;
+
+-- Database access
+GRANT USAGE
+ON DATABASE ATMOSYNC_DB
+TO ROLE ATMOSYNC_KAFKA_ROLE;
+
+-- RAW schema access
+GRANT USAGE
+ON SCHEMA ATMOSYNC_DB.RAW
+TO ROLE ATMOSYNC_KAFKA_ROLE;
+
+-- Insert sensor events
+GRANT INSERT
+ON TABLE ATMOSYNC_DB.RAW.SENSOR_EVENTS
+TO ROLE ATMOSYNC_KAFKA_ROLE;
+
+-- Allow Kafka connector to create pipes if required
+GRANT CREATE PIPE
+ON SCHEMA ATMOSYNC_DB.RAW
+TO ROLE ATMOSYNC_KAFKA_ROLE;

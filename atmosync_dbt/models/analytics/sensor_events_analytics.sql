@@ -1,0 +1,40 @@
+{{ config(
+    materialized='table'
+) }}
+
+SELECT
+    EVENT_ID,
+    EVENT_TS,
+    CONTAINER_ID,
+    COMMODITY,
+    TEMPERATURE_C,
+    HUMIDITY_PCT,
+    VIBRATION_G,
+    QUANTITY_KG,
+
+    CASE
+        WHEN TEMPERATURE_C > 25 THEN 'HIGH'
+        WHEN TEMPERATURE_C < 10 THEN 'LOW'
+        ELSE 'NORMAL'
+    END AS TEMPERATURE_STATUS,
+
+    CASE
+        WHEN HUMIDITY_PCT > 90 THEN 'HIGH'
+        WHEN HUMIDITY_PCT < 70 THEN 'LOW'
+        ELSE 'NORMAL'
+    END AS HUMIDITY_STATUS,
+
+    CASE
+        WHEN VIBRATION_G > 3 THEN 'HIGH'
+        ELSE 'NORMAL'
+    END AS VIBRATION_STATUS,
+
+    CASE
+        WHEN TEMPERATURE_C > 25
+          OR HUMIDITY_PCT > 90
+          OR VIBRATION_G > 3
+        THEN 'ALERT'
+        ELSE 'NORMAL'
+    END AS OVERALL_STATUS
+
+FROM {{ ref('stg_sensor_events') }}

@@ -1,0 +1,9 @@
+FROM apache/superset:latest
+
+USER root
+
+# Install Snowflake driver into Superset's Python environment
+RUN . /app/.venv/bin/activate && \
+    uv pip install --no-cache snowflake-sqlalchemy
+
+USER superset

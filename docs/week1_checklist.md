@@ -1,0 +1,15 @@
+# Week 1 acceptance checklist
+- [ ] Python 3.11+, Git and Docker Desktop installed
+- [ ] Virtual environment created and requirements installed
+- [ ] `.env` copied and populated locally (not committed)
+- [ ] Kafka and Superset containers running
+- [ ] Kafka topic `atmosync.sensor.telemetry` created
+- [ ] Snowflake account created
+- [ ] Snowflake setup SQL executed successfully
+- [ ] Python producer publishes telemetry to Kafka
+- [ ] Snowflake consumer inserts events
+- [ ] Snowflake COUNT(*) query returns rows
+- [ ] Superset connects to Snowflake
+- [ ] `SENSOR_EVENTS` dataset added in Superset
+- [ ] Team work distribution agreed and recorded
+- [ ] Each member has a personal Git branch and meaningful contribution

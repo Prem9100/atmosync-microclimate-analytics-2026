@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "atmosync-week1"
+version = "0.1.0"
+description = "AtmoSync Week 1 IoT telemetry streaming starter"
+requires-python = ">=3.11"
+dependencies = [
+  "confluent-kafka>=2.6,<3",
+  "snowflake-connector-python>=3.12,<5",
+  "python-dotenv>=1.0,<2",
+  "pydantic>=2.8,<3",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
