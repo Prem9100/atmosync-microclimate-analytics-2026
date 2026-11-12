@@ -38,3 +38,18 @@ models:
           - accepted_values:
               arguments:
                 values: ['ALERT', 'NORMAL']
+      - name: RISK_SCORE
+        description: "Numeric risk score based on temperature, humidity, and vibration conditions"
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [0, 1, 2, 3]
+
+      - name: RISK_LEVEL
+        description: "Overall risk classification derived from the sensor risk score"
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['LOW', 'MEDIUM', 'HIGH']
