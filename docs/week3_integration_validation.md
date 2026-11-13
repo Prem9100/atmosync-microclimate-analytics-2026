@@ -166,3 +166,28 @@ Kafka broker availability: PASS
 Kafka topic availability: PASS
 Kafka telemetry consumption: PASS
 Telemetry schema validation: PASS
+
+## Snowflake RAW Table Runtime Validation
+
+On 13 November 2026, the Snowflake consumer was executed successfully using:
+
+python -m src.atmosync.snowflake_consumer
+
+The consumer connected to Snowflake and consumed telemetry from the Kafka topic atmosync.sensor.telemetry.
+
+Three new sensor events were inserted successfully:
+- 2d3cd2c1-6216-4a4c-99ce-a2052886138a
+- 79b1dba8-5038-4911-941b-c9250aadc96a
+- e75a6473-432d-482a-ae2f-4f9eb137c1fd
+
+The Snowflake query against ATMOSYNC_DB.RAW.SENSOR_EVENTS returned the latest telemetry records with populated:
+- EVENT_ID
+- EVENT_TS
+- CONTAINER_ID
+- COMMODITY
+- TEMPERATURE_C
+- HUMIDITY_PCT
+- VIBRATION_G
+- QUANTITY_KG
+
+This confirms that the Kafka-to-Snowflake ingestion path is operational and that telemetry is being persisted in the RAW layer for downstream dbt analytics.
