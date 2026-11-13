@@ -132,3 +132,37 @@ The Week 3 dbt risk-scoring changes are successfully available in the
 main integration branch. The analytics model produces validated
 RISK_SCORE and RISK_LEVEL fields. The next integration activity is to
 update the Superset dashboard to visualize these risk metrics.
+
+## Kafka Runtime Validation
+
+The Kafka broker was started successfully using the
+apache/kafka:4.1.2 container image.
+
+The telemetry topic was verified with the Kafka topic CLI.
+
+Topic:
+atmosync.sensor.telemetry
+
+Configuration:
+- Partition count: 1
+- Replication factor: 1
+- Leader: 1
+- In-sync replica: 1
+- Minimum in-sync replicas: 1
+
+A Kafka console consumer was then used to read three telemetry messages
+from the topic. The messages contained the expected AtmoSync telemetry
+schema, including event ID, timestamp, container ID, commodity,
+temperature, humidity, vibration, and quantity.
+
+Three messages were successfully processed:
+
+- Avocado / CONT_004
+- Mango / CONT_002
+- Avocado / CONT_004
+
+Result:
+Kafka broker availability: PASS
+Kafka topic availability: PASS
+Kafka telemetry consumption: PASS
+Telemetry schema validation: PASS
