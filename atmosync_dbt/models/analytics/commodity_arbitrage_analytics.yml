@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: commodity_arbitrage_analytics
+    description: >
+      Combines commodity price differences with available sensor risk
+      information to identify potential arbitrage conditions.
+
+    columns:
+      - name: PRICE_DATE
+        tests:
+          - not_null
+
+      - name: COMMODITY
+        tests:
+          - not_null
+
+      - name: SOURCE_MARKET
+        tests:
+          - not_null
+
+      - name: DESTINATION_MARKET
+        tests:
+          - not_null
+
+      - name: SOURCE_PRICE_PER_KG
+        tests:
+          - not_null
+
+      - name: DESTINATION_PRICE_PER_KG
+        tests:
+          - not_null
+
+      - name: PRICE_DIFFERENCE_PER_KG
+        tests:
+          - not_null
+
+      - name: ARBITRAGE_STATUS
+        tests:
+          - not_null
