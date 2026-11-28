@@ -1,0 +1,13 @@
+-- Week 3 Day 3 - Superset Commodity Price Comparison
+-- Purpose: Compare source and destination commodity prices.
+
+SELECT
+    PRICE_DATE,
+    COMMODITY,
+    SOURCE_MARKET,
+    DESTINATION_MARKET,
+    SOURCE_PRICE_PER_KG,
+    DESTINATION_PRICE_PER_KG,
+    PRICE_DIFFERENCE_PER_KG
+FROM ATMOSYNC_DB.RAW.COMMODITY_ARBITRAGE_ANALYTICS
+ORDER BY PRICE_DATE, COMMODITY;
